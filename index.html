@@ -2,13 +2,30 @@
 <html>
     <head>
         <title>CG Directory Demo Page</title>
+        <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-darkness/jquery-ui.min.css">
+        <style>
+            body{
+                font-family: sans-serif;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td, th {
+                padding: 0.5em;
+                border: 1px solid white;
+            }
+        </style>
     </head>
 
     <body>
         <h1>CG Directory</h1>
+        <p>A directory widget that sets the value of an input based on the ID's of the selected items.</p>
         <form method="post" action="#">
         
-            <input type="hidden" class="cg-directory" />
+            <input type="text" class="cg-directory" />
         
         </form>
         
@@ -16,6 +33,18 @@
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
         <script src="src/cg-directory.js"></script>
+        
+        <script>
+            var options = {
+                inputSelector: ".cg-directory", // No default
+                triggerText: "Launch Directory", // Default is trigger
+                dataSource: "../demo.json" // No default
+            };
+            
+            var directory = new cg.Directory(options);
+            
+            directory.init();
+        </script>
     </body>
 
 </html>
