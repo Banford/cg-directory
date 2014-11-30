@@ -1,18 +1,27 @@
-{"items": [
+{
+    "headings":[
+        "Firstname",
+        "Surname"
+    ],
+    "items": [
 	{ 
         "id": 1, 
+        "firstname": "Jon",
         "surname": "Adams" 
     },
 	{
 		"id": 2 ,
+        "firstname": "Bobby",
 		"surname": "Bigsby"
 	},
 	{
 		"id": 3,
+        "firstname": "Peter",
 		"surname": "Charles"
 	},
 	{
 		"id": 4,
+        "firstname": "Ronald",
 		"surname": "Donaldson"
-	}
-]}
+	}]
+}

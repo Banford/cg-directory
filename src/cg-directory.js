@@ -24,19 +24,29 @@ var cg = {};
                 var checked = isChecked ? 'checked="checked"' : '';
                 
                 var checkbox = '<input class="' + checkboxClass + '" type="checkbox" ' + checked + ' value="' 
-                    + data.id + '" data-display="' + data.surname + '" />';
+                    + data.id + '" data-display="' + data.firstname + ' ' + data.surname + '" />';
                 
                 
                 var checkboxCell = '<td>' + checkbox + '</td>';
-                var dataCell = "<td>" + data.surname + "</tr>"
-                return '<tr class="cd-directory-item">' + checkboxCell + dataCell + "</td>";
+                
+                var dataCells = "";
+                // TODO: Make this dynamic
+                dataCells += "<td>" + data.firstname + "</td>";
+                dataCells += "<td>" + data.surname + "</td>";
+                
+                return '<tr class="cd-directory-item">' + checkboxCell + dataCells + "</tr>";
             },
             
-            buildTable = function(items){
+            buildTable = function(headings, items){
                 var table = $("<table></table>");
                 container.append(table);
                 
-                table.append("<thead><tr><th>x</th><th>Surname</th></tr></thead>");
+                var headingsHtml = "";
+                for(var h=0; h<headings.length; h++){          
+                    headingsHtml += "<th>" + headings[h] + "</th>"   
+                }
+                
+                table.append("<thead><tr><th>&nbsp;</th>" + headingsHtml + "</tr></thead>");
                 var tableBody = $("<tbody></tbody>");
                 table.append(tableBody);
                 
@@ -50,9 +60,7 @@ var cg = {};
                 container.html("");
                 
                 $.getJSON(settings.dataSource, function(data){
-                    items = data.items;
-                        
-                    buildTable(items);
+                    buildTable(data.headings, data.items);
                     
                     var checkboxes = $('.cg-directory-checkbox');
                     
