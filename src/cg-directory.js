@@ -40,7 +40,7 @@ var cg = {};
                     
                     var checkboxes = $('.cg-directory-checkbox');
                     
-                    checkboxes.click(selectItem);
+                    checkboxes.click(toggleItem);
                 });
             },
             
@@ -49,8 +49,19 @@ var cg = {};
                 input.val(ids);
             },
             
-            selectItem = function(item){
-                selectedItems.push(item.target.value);
+            toggleItem = function(item){
+                var isChecked = item.target.checked;
+                console.log(isChecked);
+                
+                var value = item.target.value;
+                
+                if(isChecked){   
+                    selectedItems.push(value);
+                } else {
+                    var index = selectedItems.indexOf(value);
+                    selectedItems.splice(index, 1);
+                }
+                
                 updateInput();
             };
         
