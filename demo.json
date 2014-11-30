@@ -1,7 +1,8 @@
 {"items": [
 	{ 
         "id": 1, 
-        "surname": "Adams" },
+        "surname": "Adams" 
+    },
 	{
 		"id": 2 ,
 		"surname": "Bigsby"

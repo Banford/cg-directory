@@ -19,8 +19,14 @@ var cg = {};
             checkboxClass = "cg-directory-checkbox",
             
             buildTableRow = function(data){
-                var checkbox = '<input class="' + checkboxClass + '" type="checkbox" value="' 
+                var index = selectedItems.indexOf(data.id.toString());
+                var isChecked = index > -1;
+                var checked = isChecked ? 'checked="checked"' : '';
+                
+                var checkbox = '<input class="' + checkboxClass + '" type="checkbox" ' + checked + ' value="' 
                     + data.id + '" data-display="' + data.surname + '" />';
+                
+                
                 var checkboxCell = '<td>' + checkbox + '</td>';
                 var dataCell = "<td>" + data.surname + "</tr>"
                 return '<tr class="cd-directory-item">' + checkboxCell + dataCell + "</td>";
@@ -51,8 +57,6 @@ var cg = {};
                     var checkboxes = $('.cg-directory-checkbox');
                     
                     checkboxes.click(toggleItem);
-                    
-                    console.log(selectedItems);
                 });
             },
             
