@@ -33,6 +33,8 @@ var cg = {};
             },
             
             loadData = function(){
+                container.html("");
+                
                 $.getJSON(settings.dataSource, function(data){
                     items = data.items;
                         
@@ -51,8 +53,6 @@ var cg = {};
             
             toggleItem = function(item){
                 var isChecked = item.target.checked;
-                console.log(isChecked);
-                
                 var value = item.target.value;
                 
                 if(isChecked){   
