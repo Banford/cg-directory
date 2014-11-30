@@ -56,15 +56,45 @@ var cg = {};
                 }
             },
             
-            loadData = function(){
+            buildPagingLinks = function(pagingInfo, container){
+                  
+                if(pagingInfo.pages < 2) return;
+                           
+                if(pagingInfo.currentPage > 1) {
+                    var previousPageLink = $('<a class="cg-directory-prev-link" href="#">Previous Page</a>');
+                    
+                    previousPageLink.click(function(){
+                        var previousPageNumber = pagingInfo.currentPage - 1;
+                        loadData(settings.dataSource + "?page=" + previousPageNumber)
+                    });
+                    
+                    container.append(previousPageLink);
+                }
+                
+                if(pagingInfo.currentPage < pagingInfo.pages){
+                    var nextPageLink = $('<a class="cg-directory-next-link" href="#">Next Page</a>');
+                
+                    nextPageLink.click(function(){
+                        var nextPageNumber = pagingInfo.currentPage + 1;
+                        loadData(settings.dataSource + "?page=" + nextPageNumber)
+                    });
+                    
+                    container.append(nextPageLink);   
+                }
+            },
+            
+            loadData = function(url){
                 container.html("");
                 
-                $.getJSON(settings.dataSource, function(data){
+                if(!url) url = settings.dataSource;
+                
+                $.getJSON(url, function(data){
                     buildTable(data.headings, data.items);
                     
-                    var checkboxes = $('.cg-directory-checkbox');
-                    
+                    var checkboxes = $('.cg-directory-checkbox');   
                     checkboxes.click(toggleItem);
+                    
+                    buildPagingLinks(data.pagingInfo, container);
                 });
             },
             

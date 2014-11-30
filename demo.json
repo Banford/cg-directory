@@ -3,6 +3,12 @@
         "Firstname",
         "Surname"
     ],
+    "pagingInfo": {
+        "totalItems": 8,
+        "pages": 2,
+        "currentPage": 1,
+        "pageSize": 4
+    },
     "items": [
 	{ 
         "id": 1, 
