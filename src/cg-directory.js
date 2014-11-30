@@ -44,9 +44,14 @@ var cg = {};
                 });
             },
             
+            updateInput = function(){
+                var ids = selectedItems.join(',');
+                input.val(ids);
+            },
+            
             selectItem = function(item){
-                console.log(item);
-                console.log(item.target.value);
+                selectedItems.push(item.target.value);
+                updateInput();
             };
         
         var selectedItems = [], 
